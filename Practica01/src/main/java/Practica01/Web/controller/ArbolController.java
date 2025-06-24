@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -15,13 +14,18 @@ public class ArbolController {
 
     private final ArbolService arbolService;
 
-    @GetMapping("/listado")
-    public String listado(Model model) {
-        var lista = arbolService.getArboles();
-        model.addAttribute("arboles", lista);
-        model.addAttribute("totalArboles", lista.size());
-        return "arbol/listado";
-    }
+@GetMapping("/listado")
+public String listado(Model model) {
+    var lista = arbolService.getArboles();
+    model.addAttribute("arboles", lista);
+    model.addAttribute("totalArboles", lista.size());
+
+    // 🔽 ESTA LÍNEA ES FUNDAMENTAL PARA FORMULARIOS
+    model.addAttribute("arbol", new Arbol());
+
+    return "arbol/listado";
+}
+
 
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Arbol arbol) {
