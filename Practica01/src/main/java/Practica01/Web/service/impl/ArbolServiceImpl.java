@@ -3,33 +3,34 @@ package Practica01.Web.service.impl;
 import Practica01.Web.dao.ArbolDao;
 import Practica01.Web.domain.Arbol;
 import Practica01.Web.service.ArbolService;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
+@RequiredArgsConstructor
 public class ArbolServiceImpl implements ArbolService {
 
-    @Autowired
-    private ArbolDao arbolDao;
+    private final ArbolDao arbolDao;
 
     @Override
     public List<Arbol> getArboles() {
-        return (List<Arbol>) arbolDao.findAll();
+        return arbolDao.findAll();
     }
 
     @Override
-    public void guardar(Arbol arbol) {
+    public Arbol getArbolPorId(Long id) {
+        return arbolDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void save(Arbol arbol) {
         arbolDao.save(arbol);
     }
 
     @Override
-    public void eliminar(Arbol arbol) {
-        arbolDao.delete(arbol);
-    }
-
-    @Override
-    public Arbol getArbol(Arbol arbol) {
-        return arbolDao.findById(arbol.getIdArbol()).orElse(null);
+    public void delete(Long id) {
+        arbolDao.deleteById(id);
     }
 }
