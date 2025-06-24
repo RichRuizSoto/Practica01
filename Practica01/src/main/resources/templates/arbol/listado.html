@@ -2,24 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>Practica 01 - Arbol</title>
+        <title>Listado de Árboles</title>
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-
-        <section th:replace="~{categoria/fragmentos :: botonesAgregar}"/>
-        <section th:replace="~{categoria/fragmentos :: agregarCategoria}"/> 
-        <section th:replace="~{categoria/fragmentos :: listadoCategorias}"/>
+        
+        <section th:replace="~{arbol/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{arbol/fragmentos :: agregarArbol}"/> 
+        <section th:replace="~{arbol/fragmentos :: listadoArboles}"/>
 
         <footer th:replace="~{layout/plantilla :: footer}"/>      
-      
     </body>
 </html>
-
-
-
-
-
-
-
- 
